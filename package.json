@@ -1,0 +1,60 @@
+{
+  "name": "eye-break-reminder",
+  "displayName": "Eye Break Reminder",
+  "description": "Напоминает делать перерыв для глаз каждые 40 минут работы в VS Code",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "eyeBreakReminder.start",
+        "title": "Eye Break: Запустить таймер"
+      },
+      {
+        "command": "eyeBreakReminder.stop",
+        "title": "Eye Break: Остановить таймер"
+      },
+      {
+        "command": "eyeBreakReminder.reset",
+        "title": "Eye Break: Сбросить таймер"
+      }
+    ],
+    "configuration": {
+      "title": "Eye Break Reminder",
+      "properties": {
+        "eyeBreakReminder.interval": {
+          "type": "number",
+          "default": 40,
+          "description": "Интервал напоминания в минутах",
+          "minimum": 1,
+          "maximum": 120
+        },
+        "eyeBreakReminder.autoStart": {
+          "type": "boolean",
+          "default": true,
+          "description": "Автоматически запускать таймер при открытии VS Code"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/node": "^16.x",
+    "@types/vscode": "^1.74.0",
+    "typescript": "^4.9.5"
+  }
+}
